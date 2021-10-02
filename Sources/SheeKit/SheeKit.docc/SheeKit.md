@@ -196,9 +196,8 @@ struct ShowLicenseAgreement: View {
 
 ## Demo of the library 
 
-<figure class="video_container">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/A2SzgJ6BDiw" title="SheeKit Demo on YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</figure>
+[![SheeKit Demo on YouTube](https://img.youtube.com/vi/LU9u7hdwoCs/sddefault.jpg)](https://youtu.be/LU9u7hdwoCs)
+
 
 ## Topics
 - ``DismissAction``
