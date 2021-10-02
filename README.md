@@ -1,1 +1,1 @@
-Sources/SheeKit.docc/SheeKit.md
+Sources/SheeKit/SheeKit.docc/SheeKit.md

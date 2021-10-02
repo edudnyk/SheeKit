@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    
+    <title>prefersPointerLocked| Documentation</title>
+    
+    <link rel="icon"       href="../../../favicon.ico" />
+    <link rel="mask-icon"  href="../../../favicon.svg" color="#333333" />
+    <link rel='stylesheet' href='../../../css/site.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="doc-topic">
+        <nav role="navigation" class="nav documentation-nav">
+  <div class="nav__wrapper">
+    <div class="nav__background"></div>
+    <div class="nav-content">
+      <div class="nav-title">
+        <span class="nav-title-link inactive">Documentation</span>
+      </div>
+      <div class="nav-menu">
+        <div class="nav-menu-tray">
+          <ul class="nav-menu-items hierarchy">
+            
+              <li class="nav-menu-item hierarchy-item">
+                
+                
+                  <a href="../index.html" class="item">SheeKit</a>
+                
+              </li>
+            
+              <li class="nav-menu-item hierarchy-item">
+                
+                
+                  <a href="index.html" class="item">UIViewControllerProxy</a>
+                
+              </li>
+            
+              <li class="nav-menu-item hierarchy-item">
+                
+                  <span class="current item">prefersPointerLocked</span>
+                
+                
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main id="main" role="main" class="main">
+  <div class="topictitle">
+  <span class="eyebrow">Instance Property</span>
+  <h1 class="title">prefersPointerLocked</h1>
+</div>
+
+  <div class="container content-grid">
+  <div class="description">
+    <div class="abstract content">
+      Specifies whether the view prefers to lock the pointer to a specific scene.
+    </div>
+  </div>
+  
+  <!-- The sidebar once we have one: <div class="summary"></div> -->
+  
+  <div class="primary-content">
+    <section id='declaration' class='declaration'>
+  <h2>Declaration</h2>
+  <div class='declaration-group'>
+    <pre class='source indented'><code><span class='token-keyword'>var</span> <span class='token-identifier'>prefersPointerLocked</span>: Bool?</code></pre>
+  </div>
+</section>
+<div class='content'><h2 id='discussion'>Discussion</h2><p>The default is <code>false</code>. Setting this property to <code>true</code> indicates the view’s preference to lock the pointer, although the system may not honor the request. For the system to consider locking the pointer:</p><ul><li><p><p>The scene must be full screen, not in Split View or Slide Over, with no other apps in Slide Over.</p></p></li><li><p><p>The scene must be in the <code>UIScene.ActivationState.foregroundActive</code> state.</p></p></li><li><p><p>In Mac Catalyst, the app must be in the foreground, and the window that contains the scene ordered to the front.</p></p></li></ul><aside class='note'><p class='label'>Note</p><p><p>Bringing a Mac Catalyst app to the foreground doesn’t immediately enable pointer lock. To enable pointer lock, the user must click in the window. To exit pointer lock, users can use cmd-tab to switch to another app, or using cmd-tilde.</p></p></p></aside><aside class='note'><p class='label'>Note</p><p><p>Changing this property makes an effect only starting from iOS 14.</p></p></p></aside><p>The system continuously monitors the state and when the app no longer satisfies the requirements, it disables the pointer lock.</p><p>When the lock state changes, the system posts <code>UIPointerLockState.didChangeNotification</code>.</p></div>
+  </div>
+</div>
+
+  
+  
+  
+</main>
+
+      </div>
+    </div>
+    <footer class="footer"></footer>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>

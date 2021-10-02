@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    
+    <title>SheeKit| Documentation</title>
+    
+    <link rel="icon"       href="../../favicon.ico" />
+    <link rel="mask-icon"  href="../../favicon.svg" color="#333333" />
+    <link rel='stylesheet' href='../../css/site.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="doc-topic">
+        <nav role="navigation" class="nav documentation-nav">
+  <div class="nav__wrapper">
+    <div class="nav__background"></div>
+    <div class="nav-content">
+      <div class="nav-title">
+        <span class="nav-title-link inactive">Documentation</span>
+      </div>
+      <div class="nav-menu">
+        <div class="nav-menu-tray">
+          <ul class="nav-menu-items hierarchy">
+            
+              <li class="nav-menu-item hierarchy-item">
+                
+                  <span class="current item">SheeKit</span>
+                
+                
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main id="main" role="main" class="main">
+  <div class="topictitle">
+  <span class="eyebrow">Framework</span>
+  <h1 class="title">SheeKit</h1>
+</div>
+
+  <div class="container content-grid">
+  <div class="description">
+    <div class="abstract content">
+      Customize and resize sheets in <strong>SwiftUI</strong> with <strong>SheeKit</strong>. Utilise the power of <code>UISheetPresentationController</code> and other <strong>UIKit</strong> features.
+    </div>
+  </div>
+  
+  <!-- The sidebar once we have one: <div class="summary"></div> -->
+  
+  <div class="primary-content">
+    <div class='content'><h2 id='Overview'>Overview</h2><p><strong>SheeKit</strong> is a bridge between SwiftUI and UIKit which enriches the modal presentations in SwiftUI with the features available in UIKit.</p><p><strong>SheeKit</strong> provides two modifiers for presenting the sheet, similar to SwiftUI.sheet(…):</p><ul><li><p><p>controlled by <code>isPresented</code> boolean flag</p></p></li><li><p><p>controlled by the optional <code>Identifiable</code> item</p></p></li></ul><p>Additionally, <strong>SheeKit</strong> allows to:</p><ul><li><p><p>customize sheet <code>detents</code> to present half-screen sheets</p></p></li><li><p><p>define different modal presentation styles for different <code>Identifiable</code> items</p></p></li><li><p><p>customize the preferred presented view controller properties via <a href='../../documentation/SheeKit/UIViewControllerProxy/index.html'><code>UIViewControllerProxy</code></a></p></p></li><li><p><p>utilise the <code>UIPopoverPresentationController.adaptiveSheetPresentationController</code> and customize adaptive sheet for popover which will be used on iPhone and in compact horizontal size class of the scene on iPad.</p></p></li></ul><h3 id='Customizing-sheet-detents-to-present-half-screen-sheets'>Customizing sheet detents to present half-screen sheets</h3><p>With iOS 15, sheets can be resizable between <code>large()</code> and <code>medium()</code> detents and animate the size transitions. In order to customize detents, provide <a href='../../documentation/SheeKit/SheetProperties/index.html'><code>SheetProperties</code></a> to the <a href='../../documentation/SheeKit/ModalPresentationStyle/pageSheet(properties:).html'><code>ModalPresentationStyle.pageSheet(properties:)</code></a> or <a href='../../documentation/SheeKit/ModalPresentationStyle/formSheet(properties:).html'><code>ModalPresentationStyle.formSheet(properties:)</code></a>.</p><div data-syntax="swift" class="code-listing">
+  <div class="container-general">
+    <pre><code><span class="code-line-container"><span data-line-number="1" class="code-number" style="display: none;"></span><span class="code-line">struct ShowLicenseAgreement: View {</span></span>
+<span class="code-line-container"><span data-line-number="2" class="code-number" style="display: none;"></span><span class="code-line">    @State private var isShowingSheet = false</span></span>
+<span class="code-line-container"><span data-line-number="3" class="code-number" style="display: none;"></span><span class="code-line">    @State private var selectedDetentIdentifier = UISheetPresentationController.Detent.Identifier.medium </span></span>
+<span class="code-line-container"><span data-line-number="4" class="code-number" style="display: none;"></span><span class="code-line">    var body: some View {</span></span>
+<span class="code-line-container"><span data-line-number="5" class="code-number" style="display: none;"></span><span class="code-line">        Button(action: {</span></span>
+<span class="code-line-container"><span data-line-number="6" class="code-number" style="display: none;"></span><span class="code-line">            isShowingSheet.toggle()</span></span>
+<span class="code-line-container"><span data-line-number="7" class="code-number" style="display: none;"></span><span class="code-line">        }) {</span></span>
+<span class="code-line-container"><span data-line-number="8" class="code-number" style="display: none;"></span><span class="code-line">            Text(&quot;Show License Agreement&quot;)</span></span>
+<span class="code-line-container"><span data-line-number="9" class="code-number" style="display: none;"></span><span class="code-line">        }</span></span>
+<span class="code-line-container"><span data-line-number="10" class="code-number" style="display: none;"></span><span class="code-line">        .shee(isPresented: $isShowingSheet,</span></span>
+<span class="code-line-container"><span data-line-number="11" class="code-number" style="display: none;"></span><span class="code-line">              presentationStyle: .formSheet(properties: .init(detents: [ .medium(), .large() ], selectedDetentIdentifier: $selectedDetentIdentifier, animatesSelectedDetentIdentifierChange: true)),</span></span>
+<span class="code-line-container"><span data-line-number="12" class="code-number" style="display: none;"></span><span class="code-line">              onDismiss: didDismiss) {</span></span>
+<span class="code-line-container"><span data-line-number="13" class="code-number" style="display: none;"></span><span class="code-line">            VStack {</span></span>
+<span class="code-line-container"><span data-line-number="14" class="code-number" style="display: none;"></span><span class="code-line">                Text(&quot;License Agreement&quot;)</span></span>
+<span class="code-line-container"><span data-line-number="15" class="code-number" style="display: none;"></span><span class="code-line">                    .font(.title)</span></span>
+<span class="code-line-container"><span data-line-number="16" class="code-number" style="display: none;"></span><span class="code-line">                    .padding(50)</span></span>
+<span class="code-line-container"><span data-line-number="17" class="code-number" style="display: none;"></span><span class="code-line">                Text(&quot;&quot;&quot;</span></span>
+<span class="code-line-container"><span data-line-number="18" class="code-number" style="display: none;"></span><span class="code-line">                        Terms and conditions go here.</span></span>
+<span class="code-line-container"><span data-line-number="19" class="code-number" style="display: none;"></span><span class="code-line">                    &quot;&quot;&quot;)</span></span>
+<span class="code-line-container"><span data-line-number="20" class="code-number" style="display: none;"></span><span class="code-line">                    .padding(50)</span></span>
+<span class="code-line-container"><span data-line-number="21" class="code-number" style="display: none;"></span><span class="code-line">                Button(&quot;Dismiss&quot;,</span></span>
+<span class="code-line-container"><span data-line-number="22" class="code-number" style="display: none;"></span><span class="code-line">                       action: { isShowingSheet.toggle() })</span></span>
+<span class="code-line-container"><span data-line-number="23" class="code-number" style="display: none;"></span><span class="code-line">            }</span></span>
+<span class="code-line-container"><span data-line-number="24" class="code-number" style="display: none;"></span><span class="code-line">        }</span></span>
+<span class="code-line-container"><span data-line-number="25" class="code-number" style="display: none;"></span><span class="code-line">    }</span></span>
+<span class="code-line-container"><span data-line-number="26" class="code-number" style="display: none;"></span><span class="code-line"></span></span>
+<span class="code-line-container"><span data-line-number="27" class="code-number" style="display: none;"></span><span class="code-line">    func didDismiss() {</span></span>
+<span class="code-line-container"><span data-line-number="28" class="code-number" style="display: none;"></span><span class="code-line">        // Handle the dismissing action.</span></span>
+<span class="code-line-container"><span data-line-number="29" class="code-number" style="display: none;"></span><span class="code-line">    }</span></span>
+<span class="code-line-container"><span data-line-number="30" class="code-number" style="display: none;"></span><span class="code-line">}</span></span>
+</code></pre>
+  </div>
+</div>
+<h3 id='Define-different-modal-presentation-styles-for-different-Identifiable-items'>Define different modal presentation styles for different Identifiable items</h3><p>In SwiftUI, there are three different modifiers for popover, fullScreenCover and sheet, which don’t allow the developer to show different styles of the dialog based on the same source of truth (provided by <code>item</code>).</p><p>With <strong>SheeKit</strong>, it’s possible - just provide <code>presentationStyle</code> which corresponds to your <code>item</code>.</p><div data-syntax="swift" class="code-listing">
+  <div class="container-general">
+    <pre><code><span class="code-line-container"><span data-line-number="1" class="code-number" style="display: none;"></span><span class="code-line">struct ShowPartDetail: View {</span></span>
+<span class="code-line-container"><span data-line-number="2" class="code-number" style="display: none;"></span><span class="code-line">    @State var sheetDetail: InventoryItem?</span></span>
+<span class="code-line-container"><span data-line-number="3" class="code-number" style="display: none;"></span><span class="code-line">    var body: some View {</span></span>
+<span class="code-line-container"><span data-line-number="4" class="code-number" style="display: none;"></span><span class="code-line">        Button(&quot;Show Part Details&quot;) {</span></span>
+<span class="code-line-container"><span data-line-number="5" class="code-number" style="display: none;"></span><span class="code-line">            sheetDetail = InventoryItem(</span></span>
+<span class="code-line-container"><span data-line-number="6" class="code-number" style="display: none;"></span><span class="code-line">                id: &quot;0123456789&quot;,</span></span>
+<span class="code-line-container"><span data-line-number="7" class="code-number" style="display: none;"></span><span class="code-line">                partNumber: &quot;Z-1234A&quot;,</span></span>
+<span class="code-line-container"><span data-line-number="8" class="code-number" style="display: none;"></span><span class="code-line">                quantity: 100,</span></span>
+<span class="code-line-container"><span data-line-number="9" class="code-number" style="display: none;"></span><span class="code-line">                name: &quot;Widget&quot;)</span></span>
+<span class="code-line-container"><span data-line-number="10" class="code-number" style="display: none;"></span><span class="code-line">        }</span></span>
+<span class="code-line-container"><span data-line-number="11" class="code-number" style="display: none;"></span><span class="code-line">        .shee(item: $sheetDetail,</span></span>
+<span class="code-line-container"><span data-line-number="12" class="code-number" style="display: none;"></span><span class="code-line">              presentationStyle: presentationStyle,</span></span>
+<span class="code-line-container"><span data-line-number="13" class="code-number" style="display: none;"></span><span class="code-line">              onDismiss: didDismiss) { detail in</span></span>
+<span class="code-line-container"><span data-line-number="14" class="code-number" style="display: none;"></span><span class="code-line">            VStack(alignment: .leading, spacing: 20) {</span></span>
+<span class="code-line-container"><span data-line-number="15" class="code-number" style="display: none;"></span><span class="code-line">                Text(&quot;Part Number: \(detail.partNumber)&quot;)</span></span>
+<span class="code-line-container"><span data-line-number="16" class="code-number" style="display: none;"></span><span class="code-line">                Text(&quot;Name: \(detail.name)&quot;)</span></span>
+<span class="code-line-container"><span data-line-number="17" class="code-number" style="display: none;"></span><span class="code-line">                Text(&quot;Quantity On-Hand: \(detail.quantity)&quot;)</span></span>
+<span class="code-line-container"><span data-line-number="18" class="code-number" style="display: none;"></span><span class="code-line">            }</span></span>
+<span class="code-line-container"><span data-line-number="19" class="code-number" style="display: none;"></span><span class="code-line">            .onTapGesture {</span></span>
+<span class="code-line-container"><span data-line-number="20" class="code-number" style="display: none;"></span><span class="code-line">                sheetDetail = nil</span></span>
+<span class="code-line-container"><span data-line-number="21" class="code-number" style="display: none;"></span><span class="code-line">            }</span></span>
+<span class="code-line-container"><span data-line-number="22" class="code-number" style="display: none;"></span><span class="code-line">        }</span></span>
+<span class="code-line-container"><span data-line-number="23" class="code-number" style="display: none;"></span><span class="code-line">    }</span></span>
+<span class="code-line-container"><span data-line-number="24" class="code-number" style="display: none;"></span><span class="code-line"></span></span>
+<span class="code-line-container"><span data-line-number="25" class="code-number" style="display: none;"></span><span class="code-line">    func didDismiss() {</span></span>
+<span class="code-line-container"><span data-line-number="26" class="code-number" style="display: none;"></span><span class="code-line">        // Handle the dismissing action.</span></span>
+<span class="code-line-container"><span data-line-number="27" class="code-number" style="display: none;"></span><span class="code-line">    }</span></span>
+<span class="code-line-container"><span data-line-number="28" class="code-number" style="display: none;"></span><span class="code-line"></span></span>
+<span class="code-line-container"><span data-line-number="29" class="code-number" style="display: none;"></span><span class="code-line">    func presentationStyle: ModalPresentationStyle {</span></span>
+<span class="code-line-container"><span data-line-number="30" class="code-number" style="display: none;"></span><span class="code-line">        var sheetProperties = SheetProperties()</span></span>
+<span class="code-line-container"><span data-line-number="31" class="code-number" style="display: none;"></span><span class="code-line">        sheetProperties.detents = sheetDetail.quantity &gt; 100500 ? [ .large() ] : [ .medium() ]</span></span>
+<span class="code-line-container"><span data-line-number="32" class="code-number" style="display: none;"></span><span class="code-line">        return .formSheet(properties: sheetProperties)</span></span>
+<span class="code-line-container"><span data-line-number="33" class="code-number" style="display: none;"></span><span class="code-line">    }</span></span>
+<span class="code-line-container"><span data-line-number="34" class="code-number" style="display: none;"></span><span class="code-line">}</span></span>
+<span class="code-line-container"><span data-line-number="35" class="code-number" style="display: none;"></span><span class="code-line"></span></span>
+<span class="code-line-container"><span data-line-number="36" class="code-number" style="display: none;"></span><span class="code-line">struct InventoryItem: Identifiable {</span></span>
+<span class="code-line-container"><span data-line-number="37" class="code-number" style="display: none;"></span><span class="code-line">    var id: String</span></span>
+<span class="code-line-container"><span data-line-number="38" class="code-number" style="display: none;"></span><span class="code-line">    let partNumber: String</span></span>
+<span class="code-line-container"><span data-line-number="39" class="code-number" style="display: none;"></span><span class="code-line">    let quantity: Int</span></span>
+<span class="code-line-container"><span data-line-number="40" class="code-number" style="display: none;"></span><span class="code-line">    let name: String</span></span>
+<span class="code-line-container"><span data-line-number="41" class="code-number" style="display: none;"></span><span class="code-line">}</span></span>
+</code></pre>
+  </div>
+</div>
+<h3 id='Customize-the-preferred-presented-view-controller-properties-via-UIViewControllerProxy'>Customize the preferred presented view controller properties via UIViewControllerProxy</h3><p>In UIKit, <code>UIViewController</code> class has many properties which allow to alter the user experience depending on the use case, like forbidding of interactive dismiss of the sheets via <code>isModalInPresentation</code>, customizing status bar appearance, preferred content size, or modal transition style. Unfortunately, this functionality is not exposed in SwiftUI. <strong>SheeKit</strong> solves this problem by allowing the consumer to provide <a href='../../documentation/SheeKit/UIViewControllerProxy/index.html'><code>UIViewControllerProxy</code></a> which defines preferred parameters of the presented view controller.</p><div data-syntax="swift" class="code-listing">
+  <div class="container-general">
+    <pre><code><span class="code-line-container"><span data-line-number="1" class="code-number" style="display: none;"></span><span class="code-line">struct ShowLicenseAgreement: View {</span></span>
+<span class="code-line-container"><span data-line-number="2" class="code-number" style="display: none;"></span><span class="code-line">    @State private var isShowingSheet = false</span></span>
+<span class="code-line-container"><span data-line-number="3" class="code-number" style="display: none;"></span><span class="code-line">    @State private var selectedDetentIdentifier = UISheetPresentationController.Detent.Identifier.medium </span></span>
+<span class="code-line-container"><span data-line-number="4" class="code-number" style="display: none;"></span><span class="code-line">    var body: some View {</span></span>
+<span class="code-line-container"><span data-line-number="5" class="code-number" style="display: none;"></span><span class="code-line">        Button(action: {</span></span>
+<span class="code-line-container"><span data-line-number="6" class="code-number" style="display: none;"></span><span class="code-line">            isShowingSheet.toggle()</span></span>
+<span class="code-line-container"><span data-line-number="7" class="code-number" style="display: none;"></span><span class="code-line">        }) {</span></span>
+<span class="code-line-container"><span data-line-number="8" class="code-number" style="display: none;"></span><span class="code-line">            Text(&quot;Show License Agreement&quot;)</span></span>
+<span class="code-line-container"><span data-line-number="9" class="code-number" style="display: none;"></span><span class="code-line">        }</span></span>
+<span class="code-line-container"><span data-line-number="10" class="code-number" style="display: none;"></span><span class="code-line">        .shee(isPresented: $isShowingSheet,</span></span>
+<span class="code-line-container"><span data-line-number="11" class="code-number" style="display: none;"></span><span class="code-line">              presentationStyle: .formSheet(properties: .init(detents: [ .medium(), .large() ], selectedDetentIdentifier: $selectedDetentIdentifier, animatesSelectedDetentIdentifierChange: true)),</span></span>
+<span class="code-line-container"><span data-line-number="12" class="code-number" style="display: none;"></span><span class="code-line">              presentedViewControllerParameters: presentedViewControllerParameters,</span></span>
+<span class="code-line-container"><span data-line-number="13" class="code-number" style="display: none;"></span><span class="code-line">              onDismiss: didDismiss) {</span></span>
+<span class="code-line-container"><span data-line-number="14" class="code-number" style="display: none;"></span><span class="code-line">            VStack {</span></span>
+<span class="code-line-container"><span data-line-number="15" class="code-number" style="display: none;"></span><span class="code-line">                Text(&quot;License Agreement&quot;)</span></span>
+<span class="code-line-container"><span data-line-number="16" class="code-number" style="display: none;"></span><span class="code-line">                    .font(.title)</span></span>
+<span class="code-line-container"><span data-line-number="17" class="code-number" style="display: none;"></span><span class="code-line">                    .padding(50)</span></span>
+<span class="code-line-container"><span data-line-number="18" class="code-number" style="display: none;"></span><span class="code-line">                Text(&quot;&quot;&quot;</span></span>
+<span class="code-line-container"><span data-line-number="19" class="code-number" style="display: none;"></span><span class="code-line">                        Terms and conditions go here.</span></span>
+<span class="code-line-container"><span data-line-number="20" class="code-number" style="display: none;"></span><span class="code-line">                    &quot;&quot;&quot;)</span></span>
+<span class="code-line-container"><span data-line-number="21" class="code-number" style="display: none;"></span><span class="code-line">                    .padding(50)</span></span>
+<span class="code-line-container"><span data-line-number="22" class="code-number" style="display: none;"></span><span class="code-line">                Button(&quot;Dismiss&quot;,</span></span>
+<span class="code-line-container"><span data-line-number="23" class="code-number" style="display: none;"></span><span class="code-line">                       action: { isShowingSheet.toggle() })</span></span>
+<span class="code-line-container"><span data-line-number="24" class="code-number" style="display: none;"></span><span class="code-line">            }</span></span>
+<span class="code-line-container"><span data-line-number="25" class="code-number" style="display: none;"></span><span class="code-line">        }</span></span>
+<span class="code-line-container"><span data-line-number="26" class="code-number" style="display: none;"></span><span class="code-line">    }</span></span>
+<span class="code-line-container"><span data-line-number="27" class="code-number" style="display: none;"></span><span class="code-line"></span></span>
+<span class="code-line-container"><span data-line-number="28" class="code-number" style="display: none;"></span><span class="code-line">    func didDismiss() {</span></span>
+<span class="code-line-container"><span data-line-number="29" class="code-number" style="display: none;"></span><span class="code-line">        // Handle the dismissing action.</span></span>
+<span class="code-line-container"><span data-line-number="30" class="code-number" style="display: none;"></span><span class="code-line">    }</span></span>
+<span class="code-line-container"><span data-line-number="31" class="code-number" style="display: none;"></span><span class="code-line"></span></span>
+<span class="code-line-container"><span data-line-number="32" class="code-number" style="display: none;"></span><span class="code-line">    var presentedViewControllerParameters: UIViewControllerProxy {</span></span>
+<span class="code-line-container"><span data-line-number="33" class="code-number" style="display: none;"></span><span class="code-line">        var parameters = UIViewControllerProxy()</span></span>
+<span class="code-line-container"><span data-line-number="34" class="code-number" style="display: none;"></span><span class="code-line">        parameters.preferredStatusBarStyle = .darkContent</span></span>
+<span class="code-line-container"><span data-line-number="35" class="code-number" style="display: none;"></span><span class="code-line">        parameters.preferredStatusBarUpdateAnimation = .fade</span></span>
+<span class="code-line-container"><span data-line-number="36" class="code-number" style="display: none;"></span><span class="code-line">        parameters.isModalInPresentation = true</span></span>
+<span class="code-line-container"><span data-line-number="37" class="code-number" style="display: none;"></span><span class="code-line">        parameters.modalTransitionStyle = .flipHorizontal</span></span>
+<span class="code-line-container"><span data-line-number="38" class="code-number" style="display: none;"></span><span class="code-line">        return parameters</span></span>
+<span class="code-line-container"><span data-line-number="39" class="code-number" style="display: none;"></span><span class="code-line">    }</span></span>
+<span class="code-line-container"><span data-line-number="40" class="code-number" style="display: none;"></span><span class="code-line">}</span></span>
+</code></pre>
+  </div>
+</div>
+<h3 id='Utilise-the-adaptiveSheetPresentationController-of-UIPopoverPresentationController-and-customize-adaptive-sheet-for-popover'>Utilise the adaptiveSheetPresentationController of UIPopoverPresentationController and customize adaptive sheet for popover</h3><p>In SwiftUI, when popover is shown as a sheet when the user minimizes the app to the smallest size on top of the other app on iPad, or when the popover is shown on iPhone as a sheet, developer can’t get a medium-detent sheet in a compact size class of a scene instead of a popover. The sheet into which popover adapts, is always with <code>.large()</code> detent.</p><p><strong>SheeKit</strong> allows the developer to customize this behavior and to specify the detents for the sheet in which the popover adapts to, along with the preferred popover arrow direction and the source rect.</p><div data-syntax="swift" class="code-listing">
+  <div class="container-general">
+    <pre><code><span class="code-line-container"><span data-line-number="1" class="code-number" style="display: none;"></span><span class="code-line">struct ShowLicenseAgreement: View {</span></span>
+<span class="code-line-container"><span data-line-number="2" class="code-number" style="display: none;"></span><span class="code-line">    @State private var isShowingSheet = false</span></span>
+<span class="code-line-container"><span data-line-number="3" class="code-number" style="display: none;"></span><span class="code-line">    @State private var selectedDetentIdentifier = UISheetPresentationController.Detent.Identifier.medium </span></span>
+<span class="code-line-container"><span data-line-number="4" class="code-number" style="display: none;"></span><span class="code-line">    var body: some View {</span></span>
+<span class="code-line-container"><span data-line-number="5" class="code-number" style="display: none;"></span><span class="code-line">        Button(action: {</span></span>
+<span class="code-line-container"><span data-line-number="6" class="code-number" style="display: none;"></span><span class="code-line">            isShowingSheet.toggle()</span></span>
+<span class="code-line-container"><span data-line-number="7" class="code-number" style="display: none;"></span><span class="code-line">        }) {</span></span>
+<span class="code-line-container"><span data-line-number="8" class="code-number" style="display: none;"></span><span class="code-line">            Text(&quot;Show License Agreement&quot;)</span></span>
+<span class="code-line-container"><span data-line-number="9" class="code-number" style="display: none;"></span><span class="code-line">        }</span></span>
+<span class="code-line-container"><span data-line-number="10" class="code-number" style="display: none;"></span><span class="code-line">        .shee(isPresented: $isShowingSheet,</span></span>
+<span class="code-line-container"><span data-line-number="11" class="code-number" style="display: none;"></span><span class="code-line">              presentationStyle: .popover(permittedArrowDirections: .top, </span></span>
+<span class="code-line-container"><span data-line-number="12" class="code-number" style="display: none;"></span><span class="code-line">                                          sourceRectTransform: { $0.offsetBy(dx: 16, dy: 16) }, </span></span>
+<span class="code-line-container"><span data-line-number="13" class="code-number" style="display: none;"></span><span class="code-line">                                          adaptiveSheetProperties: .init(detents: [ .medium(), .large() ], </span></span>
+<span class="code-line-container"><span data-line-number="14" class="code-number" style="display: none;"></span><span class="code-line">                                                                         selectedDetentIdentifier: $selectedDetentIdentifier, </span></span>
+<span class="code-line-container"><span data-line-number="15" class="code-number" style="display: none;"></span><span class="code-line">                                                                         animatesSelectedDetentIdentifierChange: true)),</span></span>
+<span class="code-line-container"><span data-line-number="16" class="code-number" style="display: none;"></span><span class="code-line">              onDismiss: didDismiss) {</span></span>
+<span class="code-line-container"><span data-line-number="17" class="code-number" style="display: none;"></span><span class="code-line">            VStack {</span></span>
+<span class="code-line-container"><span data-line-number="18" class="code-number" style="display: none;"></span><span class="code-line">                Text(&quot;License Agreement&quot;)</span></span>
+<span class="code-line-container"><span data-line-number="19" class="code-number" style="display: none;"></span><span class="code-line">                    .font(.title)</span></span>
+<span class="code-line-container"><span data-line-number="20" class="code-number" style="display: none;"></span><span class="code-line">                    .padding(50)</span></span>
+<span class="code-line-container"><span data-line-number="21" class="code-number" style="display: none;"></span><span class="code-line">                Text(&quot;&quot;&quot;</span></span>
+<span class="code-line-container"><span data-line-number="22" class="code-number" style="display: none;"></span><span class="code-line">                        Terms and conditions go here.</span></span>
+<span class="code-line-container"><span data-line-number="23" class="code-number" style="display: none;"></span><span class="code-line">                    &quot;&quot;&quot;)</span></span>
+<span class="code-line-container"><span data-line-number="24" class="code-number" style="display: none;"></span><span class="code-line">                    .padding(50)</span></span>
+<span class="code-line-container"><span data-line-number="25" class="code-number" style="display: none;"></span><span class="code-line">                Button(&quot;Dismiss&quot;,</span></span>
+<span class="code-line-container"><span data-line-number="26" class="code-number" style="display: none;"></span><span class="code-line">                       action: { isShowingSheet.toggle() })</span></span>
+<span class="code-line-container"><span data-line-number="27" class="code-number" style="display: none;"></span><span class="code-line">            }</span></span>
+<span class="code-line-container"><span data-line-number="28" class="code-number" style="display: none;"></span><span class="code-line">        }</span></span>
+<span class="code-line-container"><span data-line-number="29" class="code-number" style="display: none;"></span><span class="code-line">    }</span></span>
+<span class="code-line-container"><span data-line-number="30" class="code-number" style="display: none;"></span><span class="code-line"></span></span>
+<span class="code-line-container"><span data-line-number="31" class="code-number" style="display: none;"></span><span class="code-line">    func didDismiss() {</span></span>
+<span class="code-line-container"><span data-line-number="32" class="code-number" style="display: none;"></span><span class="code-line">        // Handle the dismissing action.</span></span>
+<span class="code-line-container"><span data-line-number="33" class="code-number" style="display: none;"></span><span class="code-line">    }</span></span>
+<span class="code-line-container"><span data-line-number="34" class="code-number" style="display: none;"></span><span class="code-line">}</span></span>
+</code></pre>
+  </div>
+</div>
+<h2 id='Demo-of-the-library'>Demo of the library</h2></div>
+  <figure class="video_container">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/LU9u7hdwoCs" title="SheeKit Demo on YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </figure>
+  </div>
+</div>
+
+  
+  <section id='topics' class='contenttable alt-light'>
+  <div class='container'>
+    <h2 class='title'>Topics</h2>
+
+    
+      <div class="row contenttable-section">
+        <div class="col section-title large-3 medium-3 small-12">
+          <h3 class="title">Structures</h3>
+        </div>
+  
+        <div class="col section-content large-9 medium-9 small-12">
+          
+            <div class="link-block topic">
+              
+                <a href="../../documentation/SheeKit/DismissAction/index.html" class="link has-adjacent-elements">
+                  <code class="decorated-title"><span class='decorator'>struct</span><span class='decorator empty-token'> </span><span class='identifier'>DismissAction</span></code>
+                </a>
+              
+              
+              <div class="abstract">
+                <div class="content">Provides functionality for dismissing a presentation.</div>
+              </div>
+            </div>
+          
+            <div class="link-block topic">
+              
+                <a href="../../documentation/SheeKit/Shee_Library/index.html" class="link has-adjacent-elements">
+                  <code class="decorated-title"><span class='decorator'>struct</span><span class='decorator empty-token'> </span><span class='identifier'>Shee_Library</span></code>
+                </a>
+              
+              
+              <div class="abstract">
+                <div class="content"></div>
+              </div>
+            </div>
+          
+            <div class="link-block topic">
+              
+                <a href="../../documentation/SheeKit/Shee_Previews/index.html" class="link has-adjacent-elements">
+                  <code class="decorated-title"><span class='decorator'>struct</span><span class='decorator empty-token'> </span><span class='identifier'>Shee_Previews</span></code>
+                </a>
+              
+              
+              <div class="abstract">
+                <div class="content"></div>
+              </div>
+            </div>
+          
+            <div class="link-block topic">
+              
+                <a href="../../documentation/SheeKit/SheetProperties/index.html" class="link has-adjacent-elements">
+                  <code class="decorated-title"><span class='decorator'>struct</span><span class='decorator empty-token'> </span><span class='identifier'>SheetProperties</span></code>
+                </a>
+              
+              
+              <div class="abstract">
+                <div class="content">Defines the properties of <code>UISheetPresentationController</code>.</div>
+              </div>
+            </div>
+          
+            <div class="link-block topic">
+              
+                <a href="../../documentation/SheeKit/SheetPropertiesCompat.html" class="link deprecated has-adjacent-elements">
+                  <code class="decorated-title"><span class='decorator'>struct</span><span class='decorator empty-token'> </span><span class='identifier'>SheetPropertiesCompat</span></code>
+                </a>
+              
+              
+              <div class="abstract">
+                <div class="content">Stub of <a href='../../documentation/SheeKit/SheetProperties/index.html'><code>SheetProperties</code></a> which has no public initializers and which is used when compiled for iOS 13 or iOS 14.</div>
+              </div>
+            </div>
+          
+            <div class="link-block topic">
+              
+                <a href="../../documentation/SheeKit/UIViewControllerProxy/index.html" class="link has-adjacent-elements">
+                  <code class="decorated-title"><span class='decorator'>struct</span><span class='decorator empty-token'> </span><span class='identifier'>UIViewControllerProxy</span></code>
+                </a>
+              
+              
+              <div class="abstract">
+                <div class="content">The proxy with preferred parameters of the presented view controller that hosts the presented <code>View</code>.</div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+    
+      <div class="row contenttable-section">
+        <div class="col section-title large-3 medium-3 small-12">
+          <h3 class="title">Enumerations</h3>
+        </div>
+  
+        <div class="col section-content large-9 medium-9 small-12">
+          
+            <div class="link-block topic">
+              
+                <a href="../../documentation/SheeKit/ModalPresentationStyle/index.html" class="link has-adjacent-elements">
+                  <code class="decorated-title"><span class='decorator'>enum</span><span class='decorator empty-token'> </span><span class='identifier'>ModalPresentationStyle</span></code>
+                </a>
+              
+              
+              <div class="abstract">
+                <div class="content">Defines the modal presentation style of the <code>View</code>.</div>
+              </div>
+            </div>
+          
+            <div class="link-block topic">
+              
+                <a href="../../documentation/SheeKit/ModalPresentationStyleCompat/index.html" class="link deprecated has-adjacent-elements">
+                  <code class="decorated-title"><span class='decorator'>enum</span><span class='decorator empty-token'> </span><span class='identifier'>ModalPresentationStyleCompat</span></code>
+                </a>
+              
+              
+              <div class="abstract">
+                <div class="content">Defines the modal presentation style of the <code>View</code> when compiled for iOS 13 or iOS 14.</div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+    
+  </div>
+</section>
+
+  
+</main>
+
+      </div>
+    </div>
+    <footer class="footer"></footer>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>
