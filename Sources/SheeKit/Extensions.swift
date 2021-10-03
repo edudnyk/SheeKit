@@ -90,8 +90,6 @@ extension View {
     ///     using the same process.
     ///   - presentationStyle: the ``ModalPresentationStyle`` which configures the presentation of the `content`.
     ///   - presentedViewControllerParameters: the preferred parameters of the presented view controller.
-    ///   - shouldBeDismissedByUser: allows to control whether interactive dismiss should dismiss the sheets and popovers.
-    ///     See also ``UIViewControllerProxy/isModalInPresentation``.
     ///   - onDismiss: The closure to execute when dismissing the sheet.
     ///   - content: A closure returning the content of the sheet.
     @available(iOS 15, *)
@@ -111,7 +109,6 @@ extension View {
     public func shee<Item, Content>(item: Binding<Item?>,
                                     presentationStyle: ModalPresentationStyleCompat = .automatic,
                                     presentedViewControllerParameters: UIViewControllerProxy? = nil,
-                                    shouldBeDismissedByUser: (() -> Bool)? = nil,
                                     onDismiss: (() -> Void)? = nil,
                                     @ViewBuilder content: @escaping (Item) -> Content) -> some View where Item : Identifiable, Content : View {
         return self.modifier(SheetModifier(item: item,
@@ -171,7 +168,6 @@ extension View {
     ///     `content` closure.
     ///   - presentationStyle: the ``ModalPresentationStyle`` which configures the presentation of the ``content``.
     ///   - presentedViewControllerParameters: the preferred parameters of the presented view controller.
-    ///   - shouldBeDismissedByUser: allows to control whether interactive dismiss should dismiss the sheets and popovers. See also ``UIViewControllerProxy/isModalInPresentation``.
     ///   - onDismiss: The closure to execute when dismissing the sheet.
     ///   - content: A closure that returns the content of the sheet.
     @available(iOS 15, *)
@@ -245,6 +241,7 @@ extension View {
     ///
     /// - Parameter isDisabled: A Boolean that indicates whether dismissal is
     ///   prevented.
+    /// - SeeAlso ``UIViewControllerProxy/isModalInPresentation``.
     public func shee_interactiveDismissDisabled(_ isDisabled: Bool = true) -> some View {
         environment(\.shee_isInteractiveDismissDisabled, isDisabled)
     }
