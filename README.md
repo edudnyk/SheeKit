@@ -199,6 +199,53 @@ struct ShowLicenseAgreement: View {
 [![SheeKit Demo on YouTube](https://img.youtube.com/vi/LU9u7hdwoCs/sddefault.jpg)](https://youtu.be/LU9u7hdwoCs)
 
 
+## Installation
+
+### Xcode 13
+
+1. Select your project in File Navigator, then select the project again on top of the list of targets. You'll see list of packages.
+2. Press ＋ button.
+3. In the appeared window, press ＋ button in the bottom left corner.
+4. In the appeared menu, select "Add Swift Package Collection"
+5. In the appeared dialog, enter package collection URL: [https://swiftpackageindex.com/edudnyk/collection.json](https://swiftpackageindex.com/edudnyk/collection.json)
+6. Press "Add Collection"
+7. Select **SheeKit** package from the collection.
+
+
+If you want to use **SheeKit** in any other project that uses SwiftPM, add the package as a dependency in `Package.swift`:
+
+```swift
+dependencies: [
+  .package(name: "SheeKit", url: "https://github.com/edudnyk/SheeKit.git", from: "0.0.3"),
+]
+```
+
+Next, add **SheeKit** as a dependency of your test target:
+
+```swift
+targets: [
+  .target(name: "MyApp", dependencies: ["SheeKit"], path: "Sources"),
+]
+```
+
+### Carthage
+
+If you use Carthage, you can add the following dependency to your Cartfile:
+
+```
+github "edudnyk/SheeKit" ~> 0.0.3
+```
+
+### CocoaPods
+
+If your project uses CocoaPods, add the pod to any applicable test targets in your Podfile:
+
+```ruby
+target 'MyApp' do
+  pod 'SheeKit', '~> 0.0.3'
+end
+```
+
 ## Topics
 - ``DismissAction``
 - ``ModalPresentationStyle``
