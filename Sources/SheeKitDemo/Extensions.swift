@@ -63,6 +63,8 @@ extension ModalPresentationStyle: Identifiable {
         case .popover: return .popover
         case .automatic: return .automatic
         case .custom: return .custom
+        @unknown default:
+            fatalError()
         }
     }
     
@@ -75,6 +77,8 @@ extension ModalPresentationStyle: Identifiable {
         case .popover: return "Popover Shee"
         case .automatic: return "Automatic Shee"
         case .custom: return "Custom"
+        @unknown default:
+            fatalError()
         }
     }
     
@@ -87,6 +91,8 @@ extension ModalPresentationStyle: Identifiable {
         case .popover: return "Adaptive Sheet Controller customizations"
         case .automatic: return "No customizations"
         case .custom: return "Custom"
+        @unknown default:
+            fatalError()
         }
     }
     
@@ -99,6 +105,8 @@ extension ModalPresentationStyle: Identifiable {
         case .popover: return "to see as a sheet, run on iPad and open the app on a side in Multitasking mode"
         case .automatic: return nil
         case .custom: return nil
+        @unknown default:
+            fatalError()
         }
     }
 }
@@ -134,6 +142,8 @@ extension ModalPresentationStyleCompat: Identifiable {
         case .popover: return .popover
         case .automatic: return .automatic
         case .custom: return .custom
+        @unknown default:
+            fatalError()
         }
     }
     
@@ -145,6 +155,8 @@ extension ModalPresentationStyleCompat: Identifiable {
         case .popover: return "Popover Shee"
         case .automatic: return "Automatic Shee"
         case .custom: return "Custom"
+        @unknown default:
+            fatalError()
         }
     }
     
@@ -156,6 +168,8 @@ extension ModalPresentationStyleCompat: Identifiable {
         case .popover: return "Adaptive Sheet Controller customizations"
         case .automatic: return "No customizations"
         case .custom: return "Custom"
+        @unknown default:
+            fatalError()
         }
     }
     
@@ -167,6 +181,8 @@ extension ModalPresentationStyleCompat: Identifiable {
         case .popover: return "to see as a sheet, run on iPad and open the app on a side in Multitasking mode"
         case .automatic: return nil
         case .custom: return nil
+        @unknown default:
+            fatalError()
         }
     }
 }
