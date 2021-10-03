@@ -30,8 +30,9 @@
 import SwiftUI
 
 @main
-enum CustomSheetTestsHostApp {
+public enum CustomSheetTestsHostApp {
+    public static var app = _TestApp()
     static func main() {
-        _TestApp().run()
+        app.run()
     }
 }

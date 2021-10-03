@@ -19,6 +19,9 @@
 		9E70DE6B27095CE3006791F5 /* SheetHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70DE6127095CE3006791F5 /* SheetHostingController.swift */; };
 		9E70DE6C27095CE3006791F5 /* SheetPresenterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70DE6227095CE3006791F5 /* SheetPresenterController.swift */; };
 		9E70DE6D27095CE3006791F5 /* AdaptiveDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70DE6327095CE3006791F5 /* AdaptiveDelegate.swift */; };
+		9E70DE6F27098B2F006791F5 /* SheeTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70DE6E27098B2F006791F5 /* SheeTestCase.swift */; };
+		9E70DE712709A05A006791F5 /* SheeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E70DE4C27095CC2006791F5 /* SheeKit.framework */; };
+		9E70DE722709A05A006791F5 /* SheeKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9E70DE4C27095CC2006791F5 /* SheeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9ED1C9752707E15300EB5051 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED1C9512707E14800EB5051 /* Extensions.swift */; };
 		9ED1C9762707E15300EB5051 /* UpdatablePresentationPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED1C9522707E14800EB5051 /* UpdatablePresentationPropertiesView.swift */; };
 		9ED1C9772707E15300EB5051 /* InitialPresentationPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED1C94B2707E14800EB5051 /* InitialPresentationPropertiesView.swift */; };
@@ -50,6 +53,13 @@
 			remoteGlobalIDString = 9E70DE4B27095CC2006791F5;
 			remoteInfo = SheeKit;
 		};
+		9E70DE732709A05A006791F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9E30B3792703958B009F4C51 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9E70DE4B27095CC2006791F5;
+			remoteInfo = SheeKit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -70,6 +80,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				9E70DE722709A05A006791F5 /* SheeKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,6 +102,8 @@
 		9E70DE6127095CE3006791F5 /* SheetHostingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheetHostingController.swift; sourceTree = "<group>"; };
 		9E70DE6227095CE3006791F5 /* SheetPresenterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheetPresenterController.swift; sourceTree = "<group>"; };
 		9E70DE6327095CE3006791F5 /* AdaptiveDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveDelegate.swift; sourceTree = "<group>"; };
+		9E70DE6E27098B2F006791F5 /* SheeTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheeTestCase.swift; sourceTree = "<group>"; };
+		9E70DE7027099C8C006791F5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9ED1C94B2707E14800EB5051 /* InitialPresentationPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialPresentationPropertiesView.swift; sourceTree = "<group>"; };
 		9ED1C94C2707E14800EB5051 /* SheetContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheetContentView.swift; sourceTree = "<group>"; };
 		9ED1C94D2707E14800EB5051 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -121,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E70DE712709A05A006791F5 /* SheeKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +158,7 @@
 		9E30B3782703958B009F4C51 = {
 			isa = PBXGroup;
 			children = (
+				9E70DE7027099C8C006791F5 /* README.md */,
 				9ED1C98F2708099700EB5051 /* SheeKitDemo.entitlements */,
 				9E30B3E3270406FF009F4C51 /* Sources */,
 				9E30B3CC2703961A009F4C51 /* Tests */,
@@ -234,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				9ED1C9852708056600EB5051 /* Utils.swift */,
+				9E70DE6E27098B2F006791F5 /* SheeTestCase.swift */,
 			);
 			path = UnitTestsWithHost;
 			sourceTree = "<group>";
@@ -303,8 +319,11 @@
 			buildRules = (
 			);
 			dependencies = (
+				9E70DE742709A05A006791F5 /* PBXTargetDependency */,
 			);
 			name = SheeKitTestsHost;
+			packageProductDependencies = (
+			);
 			productName = CustomSheetTestsHost;
 			productReference = 9E30B3B927039602009F4C51 /* SheeKitTestsHost.app */;
 			productType = "com.apple.product-type.application";
@@ -323,6 +342,8 @@
 				9E30B3F5270407F5009F4C51 /* PBXTargetDependency */,
 			);
 			name = SheeKitTests;
+			packageProductDependencies = (
+			);
 			productName = CustomSheetTests;
 			productReference = 9E30B3CB2703961A009F4C51 /* SheeKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -379,6 +400,8 @@
 				Base,
 			);
 			mainGroup = 9E30B3782703958B009F4C51;
+			packageReferences = (
+			);
 			productRefGroup = 9E30B3822703958B009F4C51 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -454,6 +477,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E70DE6F27098B2F006791F5 /* SheeTestCase.swift in Sources */,
 				9ED1C9862708056600EB5051 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,6 +510,11 @@
 			isa = PBXTargetDependency;
 			target = 9E70DE4B27095CC2006791F5 /* SheeKit */;
 			targetProxy = 9E70DE5227095CC2006791F5 /* PBXContainerItemProxy */;
+		};
+		9E70DE742709A05A006791F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9E70DE4B27095CC2006791F5 /* SheeKit */;
+			targetProxy = 9E70DE732709A05A006791F5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -679,7 +708,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Tests/SheeKitSheetTestsHost/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Tests/TestsHost/Preview Content\"";
 				DEVELOPMENT_TEAM = UP8HTB5ZA2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -709,7 +738,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Tests/SheeKitSheetTestsHost/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Tests/TestsHost/Preview Content\"";
 				DEVELOPMENT_TEAM = UP8HTB5ZA2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
