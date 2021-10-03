@@ -134,7 +134,9 @@ struct SheetPresenterControllerRepresentable<Item>: UIViewControllerRepresentabl
                 }
                 let worker = { [weak coordinator, weak presenter] in
                     guard let coordinator = coordinator,
-                          let presenter = presenter
+                          let presenter = presenter,
+                          let item = self.item,
+                          coordinator.sheetHost?.itemId == nil
                     else { return }
                     let sheetHost = sheetHostProvider(coordinator, presenter, item, dismissAction)
                     sheetHost.onDismiss = onDismiss
