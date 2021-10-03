@@ -238,7 +238,7 @@ github "edudnyk/SheeKit" ~> 0.0.3
 
 ### CocoaPods
 
-If your project uses CocoaPods, add the pod to any applicable test targets in your Podfile:
+If your project uses CocoaPods, add the pod to any applicable targets in your Podfile:
 
 ```ruby
 target 'MyApp' do
