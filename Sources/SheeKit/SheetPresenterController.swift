@@ -148,6 +148,7 @@ struct SheetPresenterControllerRepresentable<Item>: UIViewControllerRepresentabl
                    previousSheetHost.presentingViewController != nil {
                     coordinator.nextPresentation = worker
                 } else {
+                    coordinator.nextPresentation = nil
                     worker()
                 }
             }
