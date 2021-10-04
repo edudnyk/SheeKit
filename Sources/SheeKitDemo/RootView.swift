@@ -145,10 +145,7 @@ struct RootViewCompat: View {
                 Button("Show") {
                     isInitalPropertiesViewPresented = true
                 }
-                .accentColor(.white)
-                .padding(.horizontal, Theme.spacing12x)
-                .frame(minHeight: Theme.spacing30x)
-                .background(RoundedRectangle(cornerRadius: Theme.cornerRadius).fill(item == nil ? .gray : .blue))
+                .applyLargeButtonStyle(isSelected: item != nil)
                 .shee(item: $item, presentationStyle: item ?? .automatic, presentedViewControllerParameters: presentedViewControllerParameters) { item in
                     SheetContentViewCompat(item: .init(get: { item }, set: { self.item = $0 }), presentedViewControllerParameters: $presentedViewControllerParameters)
                 }
