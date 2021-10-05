@@ -29,7 +29,7 @@
 		9ED1C9792707E15300EB5051 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED1C94E2707E14800EB5051 /* RootView.swift */; };
 		9ED1C97A2707E15300EB5051 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED1C9542707E14800EB5051 /* Theme.swift */; };
 		9ED1C97B2707E15300EB5051 /* PreferredContentSizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED1C9532707E14800EB5051 /* PreferredContentSizeView.swift */; };
-		9ED1C97C2707E15300EB5051 /* CustomSheetDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED1C9552707E14800EB5051 /* CustomSheetDemoApp.swift */; };
+		9ED1C97C2707E15300EB5051 /* SheeKitDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED1C9552707E14800EB5051 /* SheeKitDemoApp.swift */; };
 		9ED1C97D2707E15300EB5051 /* SheetContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED1C94C2707E14800EB5051 /* SheetContentView.swift */; };
 		9ED1C97E2707E15900EB5051 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9ED1C9502707E14800EB5051 /* Preview Assets.xcassets */; };
 		9ED1C9862708056600EB5051 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED1C9852708056600EB5051 /* Utils.swift */; };
@@ -113,7 +113,7 @@
 		9ED1C9522707E14800EB5051 /* UpdatablePresentationPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatablePresentationPropertiesView.swift; sourceTree = "<group>"; };
 		9ED1C9532707E14800EB5051 /* PreferredContentSizeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferredContentSizeView.swift; sourceTree = "<group>"; };
 		9ED1C9542707E14800EB5051 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		9ED1C9552707E14800EB5051 /* CustomSheetDemoApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSheetDemoApp.swift; sourceTree = "<group>"; };
+		9ED1C9552707E14800EB5051 /* SheeKitDemoApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheeKitDemoApp.swift; sourceTree = "<group>"; };
 		9ED1C9852708056600EB5051 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		9ED1C9882708057B00EB5051 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9ED1C98A2708057B00EB5051 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				9ED1C94D2707E14800EB5051 /* Assets.xcassets */,
-				9ED1C9552707E14800EB5051 /* CustomSheetDemoApp.swift */,
+				9ED1C9552707E14800EB5051 /* SheeKitDemoApp.swift */,
 				9ED1C9512707E14800EB5051 /* Extensions.swift */,
 				9ED1C94B2707E14800EB5051 /* InitialPresentationPropertiesView.swift */,
 				9ED1C94E2707E14800EB5051 /* RootView.swift */,
@@ -457,7 +457,7 @@
 				9ED1C97D2707E15300EB5051 /* SheetContentView.swift in Sources */,
 				9ED1C9792707E15300EB5051 /* RootView.swift in Sources */,
 				9ED1C9762707E15300EB5051 /* UpdatablePresentationPropertiesView.swift in Sources */,
-				9ED1C97C2707E15300EB5051 /* CustomSheetDemoApp.swift in Sources */,
+				9ED1C97C2707E15300EB5051 /* SheeKitDemoApp.swift in Sources */,
 				9ED1C97A2707E15300EB5051 /* Theme.swift in Sources */,
 				9ED1C9772707E15300EB5051 /* InitialPresentationPropertiesView.swift in Sources */,
 				9ED1C9752707E15300EB5051 /* Extensions.swift in Sources */,

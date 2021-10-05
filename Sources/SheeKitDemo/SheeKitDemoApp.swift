@@ -30,7 +30,7 @@
 import SwiftUI
 
 @available(iOS 14, *)
-struct _CustomSheetDemoApp: App {
+struct _SheeKitDemoApp: App {
     var body: some Scene {
         WindowGroup {
             if #available(iOS 15, *) {
@@ -43,10 +43,10 @@ struct _CustomSheetDemoApp: App {
 }
 
 @main
-struct CustomSheetDemoApp {
+struct SheeKitDemoApp {
     static func main() {
         if #available(iOS 14, *) {
-            _CustomSheetDemoApp.main()
+            _SheeKitDemoApp.main()
         } else {
             __App.run(RootViewCompat())
         }
