@@ -42,21 +42,13 @@ struct ShowPartDetail: View {
         ZStack {
             HStack {
                 Button("Show Part Details") {
-                    sheetDetail = InventoryItem(
-                        id: "0123456789",
-                        partNumber: "Z-1234A",
-                        quantity: 100,
-                        name: "Widget")
+                    sheetDetail = InventoryItem.first
                 }
                 .frame(maxWidth: .infinity)
                 ._identified(by: ID.showPartDetailButton)
                 Button("Change Part Details") {
                     if sheetDetail?.quantity ?? 0 < 100500 {
-                        sheetDetail = InventoryItem(
-                            id: "9876543210",
-                            partNumber: "A-4321Z",
-                            quantity: 100500,
-                            name: "Gadget")
+                        sheetDetail = InventoryItem.second
                     } else {
                         sheetDetail = nil
                     }
@@ -64,7 +56,6 @@ struct ShowPartDetail: View {
                 .frame(maxWidth: .infinity)
                 ._identified(by: ID.changePartDetailButton)
             }
-            .frame(maxWidth: .infinity)
             .shee(item: $sheetDetail,
                   presentationStyle: presentationStyle,
                   onDismiss: onDismiss) { detail in
@@ -76,7 +67,7 @@ struct ShowPartDetail: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.red)
+        .background(Color(.systemGreen.withAlphaComponent(0.2)))
     }
     
     var presentationStyle: ModalPresentationStyle {
@@ -86,11 +77,23 @@ struct ShowPartDetail: View {
     }
 }
 
-struct InventoryItem: Identifiable {
+struct InventoryItem: Identifiable, Hashable {
     var id: String
     let partNumber: String
     let quantity: Int
     let name: String
+    
+    static let first = InventoryItem(
+        id: "0123456789",
+        partNumber: "Z-1234A",
+        quantity: 100,
+        name: "Widget")
+
+    static let second = InventoryItem(
+        id: "9876543210",
+        partNumber: "A-4321Z",
+        quantity: 100500,
+        name: "Gadget")
 }
 
 final class SheeTestCase: ViewTestCase {
@@ -120,18 +123,20 @@ final class SheeTestCase: ViewTestCase {
             .presentedViewController as? UIHostingController<AnyView>
     }
     
-    func testItemChangedTwiceDismissedTwice() {
+//    func test() {
+//        viewTest?.loop()
+//    }
+    
+    func testItemChangedThriceDismissedTwice() {
         guard let viewTest = viewTest else {
             XCTFail("No view to test.")
             return
         }
         
-        viewTest.render(seconds: 1)
         let bounds = UIScreen.main.bounds
         viewTest.sendTouchSequence([
             (location: CGPoint(x: bounds.maxX * 0.25, y: bounds.midY), globalLocation: nil, timestamp: Date())
         ])
-        viewTest.render(seconds: 1)
         viewTest.turnRunloop(times: 20)
         guard let _ = presentedViewController else {
             XCTFail("No presented view to test.")
@@ -140,28 +145,24 @@ final class SheeTestCase: ViewTestCase {
         viewTest.sendTouchSequence([
             (location: CGPoint(x: bounds.maxX * 0.75, y: bounds.midY), globalLocation: nil, timestamp: Date())
         ])
-        viewTest.render(seconds: 1)
         viewTest.turnRunloop(times: 10)
         viewTest.sendTouchSequence([
             (location: CGPoint(x: bounds.maxX * 0.75, y: bounds.midY), globalLocation: nil, timestamp: Date())
         ])
-        viewTest.render(seconds: 1)
         viewTest.turnRunloop(times: 10)
         XCTAssertEqual(dismissCounter, 2)
         XCTAssertNil(presentedViewController)
     }
     
-    func testItemChangedTwiceDismissedOnce() {
+    func testItemChangedThriceDismissedOnce() {
         guard let viewTest = viewTest else {
             XCTFail("No view to test.")
             return
         }
-        viewTest.render(seconds: 1)
         let bounds = UIScreen.main.bounds
         viewTest.sendTouchSequence([
             (location: CGPoint(x: bounds.maxX * 0.25, y: bounds.midY), globalLocation: nil, timestamp: Date())
         ])
-        viewTest.render(seconds: 1)
         viewTest.turnRunloop(times: 10)
         guard let _ = presentedViewController else {
             XCTFail("No presented view to test.")
@@ -173,7 +174,6 @@ final class SheeTestCase: ViewTestCase {
         viewTest.sendTouchSequence([
             (location: CGPoint(x: bounds.maxX * 0.75, y: bounds.midY), globalLocation: nil, timestamp: Date())
         ])
-        viewTest.render(seconds: 1)
         viewTest.turnRunloop(times: 10)
         XCTAssertEqual(dismissCounter, 1)
         XCTAssertNil(presentedViewController)
