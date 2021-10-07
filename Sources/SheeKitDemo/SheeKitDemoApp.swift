@@ -1,6 +1,6 @@
 //
-//  CustomSheetDemoApp.swift
-//  CustomSheetDemo
+//  SheeKitDemoApp.swift
+//  SheeKitDemo
 //
 //  Created by Eugene Dudnyk on 28/09/2021.
 //

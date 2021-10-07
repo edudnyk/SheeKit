@@ -35,7 +35,7 @@
 		9ED1C9862708056600EB5051 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED1C9852708056600EB5051 /* Utils.swift */; };
 		9ED1C98C2708057B00EB5051 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9ED1C9882708057B00EB5051 /* Assets.xcassets */; };
 		9ED1C98D2708057B00EB5051 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9ED1C98A2708057B00EB5051 /* Preview Assets.xcassets */; };
-		9ED1C98E2708057B00EB5051 /* CustomSheetTestsHostApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED1C98B2708057B00EB5051 /* CustomSheetTestsHostApp.swift */; };
+		9ED1C98E2708057B00EB5051 /* SheeKitTestsHostApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED1C98B2708057B00EB5051 /* SheeKitTestsHostApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,7 +117,7 @@
 		9ED1C9852708056600EB5051 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		9ED1C9882708057B00EB5051 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9ED1C98A2708057B00EB5051 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		9ED1C98B2708057B00EB5051 /* CustomSheetTestsHostApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSheetTestsHostApp.swift; sourceTree = "<group>"; };
+		9ED1C98B2708057B00EB5051 /* SheeKitTestsHostApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheeKitTestsHostApp.swift; sourceTree = "<group>"; };
 		9ED1C98F2708099700EB5051 /* SheeKitDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SheeKitDemo.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -259,7 +259,7 @@
 			children = (
 				9ED1C9882708057B00EB5051 /* Assets.xcassets */,
 				9ED1C9892708057B00EB5051 /* Preview Content */,
-				9ED1C98B2708057B00EB5051 /* CustomSheetTestsHostApp.swift */,
+				9ED1C98B2708057B00EB5051 /* SheeKitTestsHostApp.swift */,
 			);
 			path = TestsHost;
 			sourceTree = "<group>";
@@ -469,7 +469,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9ED1C98E2708057B00EB5051 /* CustomSheetTestsHostApp.swift in Sources */,
+				9ED1C98E2708057B00EB5051 /* SheeKitTestsHostApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

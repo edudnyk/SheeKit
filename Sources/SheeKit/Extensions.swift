@@ -1,6 +1,6 @@
 //
 //  Extensions.swift
-//  CustomSheet
+//  SheeKit
 //
 //  Created by Eugene Dudnyk on 28/09/2021.
 //

@@ -1,6 +1,6 @@
 //
-//  CustomSheetTestsHostApp.swift
-//  CustomSheetTestsHost
+//  SheeKitTestsHostApp.swift
+//  SheeKitTestsHost
 //
 //  Created by Eugene Dudnyk on 28/09/2021.
 //
@@ -30,7 +30,7 @@
 import SwiftUI
 
 @main
-public enum CustomSheetTestsHostApp {
+public enum SheeKitTestsHostApp {
     public static var app = _TestApp()
     static func main() {
         app.run()

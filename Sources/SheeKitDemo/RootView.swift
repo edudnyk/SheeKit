@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  CustomSheetDemo
+//  SheeKitDemo
 //
 //  Created by Eugene Dudnyk on 28/09/2021.
 //
