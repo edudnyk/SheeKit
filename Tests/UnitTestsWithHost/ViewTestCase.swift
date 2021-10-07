@@ -46,12 +46,15 @@ open class ViewTestCase: XCTestCase {
     public var viewTest: UIHostingController<AnyView>?
     open override func setUp() {
         super.setUp()
+        
         let viewTest: UIHostingController<AnyView>?
+        
         if #available(iOS 15, *) {
             viewTest = _makeUIHostingController(initRootView(), tracksContentSize: tracksContentSize) as? UIHostingController<AnyView>
         } else {
             viewTest = _makeUIHostingController(initRootView()) as? UIHostingController<AnyView>
         }
+        
         viewTest?.setUpTest()
         self.viewTest = viewTest
     }
