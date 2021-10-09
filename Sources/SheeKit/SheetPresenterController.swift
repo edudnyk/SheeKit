@@ -190,8 +190,11 @@ struct SheetPresenterControllerRepresentable<Item>: UIViewControllerRepresentabl
     }
     
     func dismissAction(_ coordinator: AdaptiveDelegate<Item>) -> DismissAction {
-        .init { [weak coordinator] in
-            guard let coordinator = coordinator else { return }
+        let currentItemId = item?.id
+        return .init { [weak coordinator] in
+            guard let coordinator = coordinator,
+                  let currentItemId = currentItemId,
+                  coordinator.sheetHost?.itemId == currentItemId else { return }
             self.item = nil
             if coordinator.sheetHost?.presentingViewController == nil {
                 /// Dismissal transition already ended,
