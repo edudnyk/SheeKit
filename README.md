@@ -210,6 +210,7 @@ struct ShowLicenseAgreement: View {
 5. In the appeared dialog, enter package collection URL: [https://swiftpackageindex.com/edudnyk/collection.json](https://swiftpackageindex.com/edudnyk/collection.json)
 6. Press "Add Collection"
 7. Select **SheeKit** package from the collection.
+8. In **Frameworks, Libraries, and Embedded Content** section of your app target change 'SheeKit' package Embed option to *Embed & Sign*. 
 
 
 If you want to use **SheeKit** in any other project that uses SwiftPM, add the package as a dependency in `Package.swift`:
