@@ -210,14 +210,13 @@ struct ShowLicenseAgreement: View {
 5. In the appeared dialog, enter package collection URL: [https://swiftpackageindex.com/edudnyk/collection.json](https://swiftpackageindex.com/edudnyk/collection.json)
 6. Press "Add Collection"
 7. Select **SheeKit** package from the collection.
-8. In **Frameworks, Libraries, and Embedded Content** section of your app target change 'SheeKit' package Embed option to *Embed & Sign*. 
 
 
 If you want to use **SheeKit** in any other project that uses SwiftPM, add the package as a dependency in `Package.swift`:
 
 ```swift
 dependencies: [
-  .package(name: "SheeKit", url: "https://github.com/edudnyk/SheeKit.git", from: "0.0.3"),
+  .package(name: "SheeKit", url: "https://github.com/edudnyk/SheeKit.git", from: "1.0.0"),
 ]
 ```
 
@@ -234,7 +233,7 @@ targets: [
 If you use Carthage, you can add the following dependency to your Cartfile:
 
 ```
-github "edudnyk/SheeKit" ~> 0.0.3
+github "edudnyk/SheeKit" ~> 1.0.0
 ```
 
 ### CocoaPods
@@ -243,7 +242,7 @@ If your project uses CocoaPods, add the pod to any applicable targets in your Po
 
 ```ruby
 target 'MyApp' do
-  pod 'SheeKit', '~> 0.0.3'
+  pod 'SheeKit', '~> 1.0.0'
 end
 ```
 
