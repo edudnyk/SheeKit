@@ -57,7 +57,8 @@ public struct SheetProperties {
     /// Default: an array of only `.large()`
     public var detents: [UISheetPresentationController.Detent]
 
-    /// The identifier of the selected detent. When `nil` or the identifier is not found in detents, the sheet is displayed at the smallest detent.
+    /// The identifier of the selected detent. When binding's wrapped value is `nil` or the identifier is not found in detents, the sheet is displayed at the smallest detent.
+    /// When binding is `nil` (default), the user's chosen detent is considered unmanaged and is never overwritten.
     /// Default: `nil`
     public var selectedDetentIdentifier: Binding<UISheetPresentationController.Detent.Identifier?>? = nil
 

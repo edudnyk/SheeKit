@@ -177,9 +177,10 @@ extension SheetPropertiesPresentationConfigurator {
             sheetPresentationController.detents = sorted
         }
 
-        if sheetPresentationController.selectedDetentIdentifier != properties.selectedDetentIdentifier?.wrappedValue {
+        if let binding = properties.selectedDetentIdentifier,
+           sheetPresentationController.selectedDetentIdentifier != binding.wrappedValue {
             let setter = {
-                sheetPresentationController.selectedDetentIdentifier = properties.selectedDetentIdentifier?.wrappedValue
+                sheetPresentationController.selectedDetentIdentifier = binding.wrappedValue
             }
             if !isInitial, properties.animatesSelectedDetentIdentifierChange {
                 sheetPresentationController.animateChanges(setter)
