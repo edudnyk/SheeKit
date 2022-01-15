@@ -46,7 +46,10 @@ struct SheetModifier<Item, SheetContent>: ViewModifier where Item : Identifiable
     }
     
     private var sheetHostProvider: (AdaptiveDelegate<Item>, UIViewController, Item, DismissAction) -> SheetHostingController<Item> { { coordinator, presenter, item, dismiss in
-        let sheetHost = SheetHostingController(rootView: sheetContent(for: item, isPresented: true, dismiss: dismiss), item: item)
+        let rootView = sheetContent(for: item, isPresented: true, dismiss: dismiss) { [weak coordinator] isInteractiveDismissDisabled in
+            coordinator?.isInteractiveDismissDisabled = isInteractiveDismissDisabled
+        }
+        let sheetHost = SheetHostingController(rootView: rootView, item: item)
         presentationStyle.setup(sheetHost, presenter: presenter, isInitial: true)
         sheetHost.configure(by: presentedViewControllerParameters)
         coordinator.sheetHost = sheetHost
@@ -61,7 +64,9 @@ struct SheetModifier<Item, SheetContent>: ViewModifier where Item : Identifiable
     private var sheetHostUpdater: (AdaptiveDelegate<Item>, UIViewController, Bool, DismissAction) -> Void { { coordinator, presenter, isPresented, dismiss in
         guard let sheetHost = coordinator.sheetHost else { return }
         if isPresented {
-            sheetHost.rootView = sheetContent(for: sheetHost.item, isPresented: isPresented, dismiss: dismiss)
+            sheetHost.rootView = sheetContent(for: sheetHost.item, isPresented: isPresented, dismiss: dismiss) { [weak coordinator] isInteractiveDismissDisabled in
+                coordinator?.isInteractiveDismissDisabled = isInteractiveDismissDisabled
+            }
             presentationStyle.setup(sheetHost, presenter: presenter, isInitial: false)
             sheetHost.configure(by: presentedViewControllerParameters)
             if #available(iOS 15, *),
@@ -72,11 +77,12 @@ struct SheetModifier<Item, SheetContent>: ViewModifier where Item : Identifiable
         }
     } }
     
-    private func sheetContent(for item: Item, isPresented: Bool, dismiss: DismissAction) -> AnyView {
+    private func sheetContent(for item: Item, isPresented: Bool, dismiss: DismissAction, onInteractiveDismissDisabled: @escaping (Bool) -> Void) -> AnyView {
         AnyView(
             content(item)
                 .environment(\.shee_isPresented, isPresented)
                 .environment(\.shee_dismiss, dismiss)
+                .onPreferenceChange(SheeInteractiveDismissDisabledPreferenceKey.self, perform: onInteractiveDismissDisabled)
             )
     }
 }

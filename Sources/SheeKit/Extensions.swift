@@ -243,7 +243,7 @@ extension View {
     ///   prevented.
     /// - SeeAlso ``UIViewControllerProxy/isModalInPresentation``.
     public func shee_interactiveDismissDisabled(_ isDisabled: Bool = true) -> some View {
-        environment(\.shee_isInteractiveDismissDisabled, isDisabled)
+        preference(key: SheeInteractiveDismissDisabledPreferenceKey.self, value: isDisabled)
     }
 }
 
@@ -312,16 +312,20 @@ public struct DismissAction {
     public func callAsFunction() { closure() }
 }
 
+struct SheeInteractiveDismissDisabledPreferenceKey: PreferenceKey {
+    static func reduce(value: inout Bool, nextValue: () -> Bool) {
+        value = value || nextValue()
+    }
+
+    static var defaultValue = false
+}
+
 extension EnvironmentValues {
     private struct SheeDismissActionEnvironmentKey: EnvironmentKey {
         static var defaultValue: DismissAction?
     }
 
     private struct SheeIsPresentedEnvironmentKey: EnvironmentKey {
-        static var defaultValue = false
-    }
-    
-    private struct SheeInteractiveDismissDisabledEnvironmentKey: EnvironmentKey {
         static var defaultValue = false
     }
 
@@ -352,11 +356,6 @@ extension EnvironmentValues {
             }
         }
         set { self[SheeIsPresentedEnvironmentKey.self] = newValue }
-    }
-    
-    internal var shee_isInteractiveDismissDisabled: Bool {
-        get { self[SheeInteractiveDismissDisabledEnvironmentKey.self] }
-        set { self[SheeInteractiveDismissDisabledEnvironmentKey.self] = newValue }
     }
 }
 

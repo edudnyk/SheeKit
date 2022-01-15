@@ -88,7 +88,6 @@ private extension UIView {
 
 struct SheetPresenterControllerRepresentable<Item>: UIViewControllerRepresentable where Item : Identifiable {
     @Binding var item: Item?
-    @Environment(\.shee_isInteractiveDismissDisabled) private var isInteractiveDismissDisabled
     let onDismiss: (() -> Void)?
     let sheetHostProvider: (AdaptiveDelegate<Item>, UIViewController, Item, DismissAction) -> SheetHostingController<Item>
     let sheetHostUpdater: (AdaptiveDelegate<Item>, UIViewController, Bool, DismissAction) -> Void
@@ -107,7 +106,6 @@ struct SheetPresenterControllerRepresentable<Item>: UIViewControllerRepresentabl
         let coordinator = context.coordinator
         let dismissAction = dismissAction(coordinator)
         coordinator.dismissedByUserCallback = dismissAction
-        coordinator.isInteractiveDismissDisabled = isInteractiveDismissDisabled
         let isCurrentItemSheet = updateSheet(presenter, context: context)
         if let sheetHost = coordinator.sheetHost,
            sheetHost.itemId != nil,
