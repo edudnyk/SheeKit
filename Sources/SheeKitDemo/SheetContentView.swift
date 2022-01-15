@@ -35,8 +35,8 @@ struct SheetContentView: View {
     @Binding var item: ModalPresentationStyle
     @Binding var presentedViewControllerParameters: UIViewControllerProxy
     @EnvironmentObject var sheetProperties: SheetPropertiesObservable
-    @State var nextItem: ModalPresentationStyle?
-    @Environment(\.shee_dismiss) var dismiss
+    @State private var nextItem: ModalPresentationStyle?
+    @Environment(\.shee_dismiss) private var dismiss
     
     var body: some View {
         NavigationView {
@@ -91,7 +91,7 @@ struct SheetContentView: View {
     }
     
     @ViewBuilder
-    var controls: some View {
+    private var controls: some View {
         VStack(alignment: .leading, spacing: Theme.spacing4x) {
             switch item {
             case .pageSheet: UpdatableSheetPresentationPropertiesView()
@@ -107,8 +107,8 @@ struct SheetContentView: View {
 struct SheetContentViewCompat: View {
     @Binding var item: ModalPresentationStyleCompat
     @Binding var presentedViewControllerParameters: UIViewControllerProxy
-    @State var nextItem: ModalPresentationStyleCompat?
-    @Environment(\.shee_dismiss) var dismiss
+    @State private var nextItem: ModalPresentationStyleCompat?
+    @Environment(\.shee_dismiss) private var dismiss
     
     var body: some View {
         NavigationView {
@@ -157,7 +157,7 @@ struct SheetContentViewCompat: View {
     }
     
     @ViewBuilder
-    var controls: some View {
+    private var controls: some View {
         VStack {
             PreferredContentSizeView(preferredContentSize: $presentedViewControllerParameters.preferredContentSize)
         }

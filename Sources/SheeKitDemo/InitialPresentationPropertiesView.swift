@@ -35,7 +35,7 @@ struct InitialPresentationPropertiesView: View {
     @Binding var nextItem: ModalPresentationStyle
     @Binding var presentedViewControllerParameters: UIViewControllerProxy
     let action: (ModalPresentationStyle) -> Void
-    @Environment(\.shee_dismiss) var dismiss
+    @Environment(\.shee_dismiss) private var dismiss
     
     var body: some View {
         NavigationView {
@@ -129,7 +129,7 @@ struct NextItemView: View {
     }
     
     @ViewBuilder
-    func arrowDirectionToggle(_ arrowDirection: UIPopoverArrowDirection, in permittedArrowDirections: UIPopoverArrowDirection, sourceRectTransform: ((CGRect) -> CGRect)?, adaptiveSheetProperties: SheetProperties?) -> some View {
+    private func arrowDirectionToggle(_ arrowDirection: UIPopoverArrowDirection, in permittedArrowDirections: UIPopoverArrowDirection, sourceRectTransform: ((CGRect) -> CGRect)?, adaptiveSheetProperties: SheetProperties?) -> some View {
         Button(action: {
             var permittedArrowDirections = permittedArrowDirections
             if permittedArrowDirections.contains(arrowDirection) {
@@ -149,8 +149,8 @@ struct InitialPresentationPropertiesViewCompat: View {
     @Binding var nextItem: ModalPresentationStyleCompat
     @Binding var presentedViewControllerParameters: UIViewControllerProxy
     let action: (ModalPresentationStyleCompat) -> Void
-    @Environment(\.shee_dismiss) var dismiss
-    @State var showingPicker = false
+    @Environment(\.shee_dismiss) private var dismiss
+    @State private var showingPicker = false
     
     var body: some View {
         NavigationView {
@@ -232,7 +232,7 @@ struct NextItemViewCompat: View {
     }
     
     @ViewBuilder
-    func arrowDirectionToggle(_ arrowDirection: UIPopoverArrowDirection, in permittedArrowDirections: UIPopoverArrowDirection, sourceRectTransform: ((CGRect) -> CGRect)?) -> some View {
+    private func arrowDirectionToggle(_ arrowDirection: UIPopoverArrowDirection, in permittedArrowDirections: UIPopoverArrowDirection, sourceRectTransform: ((CGRect) -> CGRect)?) -> some View {
         Button(action: {
             var permittedArrowDirections = permittedArrowDirections
             if permittedArrowDirections.contains(arrowDirection) {

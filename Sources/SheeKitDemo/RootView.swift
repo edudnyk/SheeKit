@@ -62,11 +62,11 @@ final class SheetPropertiesObservable: ObservableObject {
 
 @available(iOS 15, *)
 struct RootView: View {
-    @State var item: ModalPresentationStyle?
-    @State var isInitalPropertiesViewPresented = false
-    @State var presentedViewControllerParameters = UIViewControllerProxy()
-    @State var selectedDetentIdentifier: UISheetPresentationController.Detent.Identifier?
-    @StateObject var sheetProperties = SheetPropertiesObservable()
+    @State private var item: ModalPresentationStyle?
+    @State private var isInitalPropertiesViewPresented = false
+    @State private var presentedViewControllerParameters = UIViewControllerProxy()
+    @State private var selectedDetentIdentifier: UISheetPresentationController.Detent.Identifier?
+    @StateObject private var sheetProperties = SheetPropertiesObservable()
     
     var body: some View {
         NavigationView {
@@ -79,7 +79,7 @@ struct RootView: View {
     }
     
     @ViewBuilder
-    var destination: some View {
+    private var destination: some View {
         let mergedItem = mergedItem
         VStack {
             HStack {
@@ -105,7 +105,7 @@ struct RootView: View {
         }
     }
     
-    var mergedItem: Binding<ModalPresentationStyle?> {
+    private var mergedItem: Binding<ModalPresentationStyle?> {
         .init(get: {
             switch item {
             case .pageSheet: return .pageSheet(properties: sheetProperties.asStruct)
@@ -124,9 +124,9 @@ struct RootView: View {
 }
 
 struct RootViewCompat: View {
-    @State var item: ModalPresentationStyleCompat?
-    @State var isInitalPropertiesViewPresented = false
-    @State var presentedViewControllerParameters = UIViewControllerProxy()
+    @State private var item: ModalPresentationStyleCompat?
+    @State private var isInitalPropertiesViewPresented = false
+    @State private var presentedViewControllerParameters = UIViewControllerProxy()
     
     var body: some View {
         NavigationView {
@@ -138,7 +138,7 @@ struct RootViewCompat: View {
     }
     
     @ViewBuilder
-    var destination: some View {
+    private var destination: some View {
         VStack {
             HStack {
                 Spacer()

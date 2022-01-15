@@ -32,7 +32,7 @@ import SheeKit
 
 @available(iOS 15, *)
 struct UpdatableSheetPresentationPropertiesView: View {
-    @EnvironmentObject var sheetProperties: SheetPropertiesObservable
+    @EnvironmentObject private var sheetProperties: SheetPropertiesObservable
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.spacing4x) {
             Toggle("Prefers edge attached in compact height", isOn: $sheetProperties.prefersEdgeAttachedInCompactHeight)
@@ -99,11 +99,11 @@ struct UpdatableSheetPresentationPropertiesView: View {
         }
     }
     
-    var hasLargeDetent: Bool {
+    private var hasLargeDetent: Bool {
         sheetProperties.detents.contains(UISheetPresentationController.Detent.large())
     }
     
-    var hasMediumDetent: Bool {
+    private var hasMediumDetent: Bool {
         sheetProperties.detents.contains(UISheetPresentationController.Detent.medium())
     }
 }
