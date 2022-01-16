@@ -216,7 +216,7 @@ If you want to use **SheeKit** in any other project that uses SwiftPM, add the p
 
 ```swift
 dependencies: [
-  .package(name: "SheeKit", url: "https://github.com/edudnyk/SheeKit.git", from: "1.0.1"),
+  .package(name: "SheeKit", url: "https://github.com/edudnyk/SheeKit.git", from: "2.0.0"),
 ]
 ```
 
@@ -233,7 +233,7 @@ targets: [
 If you use Carthage, you can add the following dependency to your Cartfile:
 
 ```
-github "edudnyk/SheeKit" ~> 1.0.1
+github "edudnyk/SheeKit" ~> 2.0.0
 ```
 
 ### CocoaPods
@@ -242,7 +242,7 @@ If your project uses CocoaPods, add the pod to any applicable targets in your Po
 
 ```ruby
 target 'MyApp' do
-  pod 'SheeKit', '~> 1.0.1'
+  pod 'SheeKit', '~> 2.0.0'
 end
 ```
 
