@@ -54,6 +54,31 @@ final class SheetPresenterController: UIViewController {
             onAppearCallback = nil
         }
     }
+
+    weak var presenterProxy: UIViewController?
+
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
+        /// Fix of https://github.com/edudnyk/SheeKit/issues/8 - the NavigationView considers sheet presenter
+        /// as a displayable detail controller of navigation controller / split controller.
+        if parent is UINavigationController || parent is UITabBarController || parent is UISplitViewController || parent is UIPageViewController {
+            presenterProxy = parent
+            willMove(toParent: nil)
+            removeFromParent()
+        } else if parent != nil {
+            presenterProxy = self
+        } else {
+            guard parent == nil,
+                  let proxy = presenterProxy,
+                  proxy != self,
+                  proxy.isViewLoaded, isViewLoaded,
+                  view.isDescendant(of: proxy.view)
+            else {
+                presenterProxy = nil
+                return
+            }
+        }
+    }
     
     override func loadView() {
         view = AppearanceCallbackView()
@@ -139,7 +164,7 @@ struct SheetPresenterControllerRepresentable<Item>: UIViewControllerRepresentabl
                     let sheetHost = sheetHostProvider(coordinator, presenter, item, dismissAction)
                     sheetHost.onDismiss = onDismiss
                     sheetHost.presentationController?.delegate = coordinator
-                    presenter.present(sheetHost, animated: true)
+                    presenter.presenterProxy?.present(sheetHost, animated: true)
                 }
                 if let previousSheetHost = coordinator.sheetHost,
                    previousSheetHost.itemId == nil,
@@ -150,6 +175,8 @@ struct SheetPresenterControllerRepresentable<Item>: UIViewControllerRepresentabl
                     worker()
                 }
             }
+        } else if item == nil {
+            presenter.cancelSheduledOnAppear()
         }
     }
     
@@ -184,6 +211,8 @@ struct SheetPresenterControllerRepresentable<Item>: UIViewControllerRepresentabl
                 presenter.view.removeFromSuperview()
             }
             presenter.removeFromParent()
+        } else if presenter.isViewLoaded {
+            presenter.view.removeFromSuperview()
         }
     }
     
