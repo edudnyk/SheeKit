@@ -89,25 +89,25 @@ extension ModalPresentationConfigurator {
             viewController.modalPresentationStyle = style
         }
     }
-    
+
     static func setupCustom(_ viewController: UIViewController, transitioningDelegate: UIViewControllerTransitioningDelegate?, isInitial: Bool) {
         setupModalPresentationStyle(viewController, style: .custom, isInitial: isInitial)
         viewController.transitioningDelegate = transitioningDelegate
     }
-    
+
     static func setupPageSheet(_ viewController: UIViewController, presenter: UIViewController, isInitial: Bool) {
         setupModalPresentationStyle(viewController, style: .pageSheet, isInitial: isInitial)
     }
-    
+
     static func setupFormSheet(_ viewController: UIViewController, presenter: UIViewController, isInitial: Bool) {
         setupModalPresentationStyle(viewController, style: .formSheet, isInitial: isInitial)
     }
-    
+
     static func setupPopover(_ viewController: UIViewController,
-                                     presenter: UIViewController,
-                                     sourceRectTransform: ((CGRect) -> CGRect)?,
-                                     permittedArrowDirections: UIPopoverArrowDirection,
-                                     isInitial: Bool) {
+                             presenter: UIViewController,
+                             sourceRectTransform: ((CGRect) -> CGRect)?,
+                             permittedArrowDirections: UIPopoverArrowDirection,
+                             isInitial: Bool) {
         setupModalPresentationStyle(viewController, style: .popover, isInitial: isInitial)
         if isInitial {
             viewController.popoverPresentationController?.sourceView = presenter.view
@@ -129,18 +129,18 @@ extension SheetPropertiesPresentationConfigurator {
         setupPageSheet(viewController, presenter: presenter, isInitial: isInitial)
         setup(viewController.sheetPresentationController, presenter: presenter, properties: properties, isInitial: isInitial)
     }
-    
+
     static func setupFormSheet(_ viewController: UIViewController, presenter: UIViewController, properties: SheetProperties?, isInitial: Bool) {
         setupFormSheet(viewController, presenter: presenter, isInitial: isInitial)
         setup(viewController.sheetPresentationController, presenter: presenter, properties: properties, isInitial: isInitial)
     }
-    
+
     static func setupPopover(_ viewController: UIViewController,
-                                     presenter: UIViewController,
-                                     sourceRectTransform: ((CGRect) -> CGRect)?,
-                                     permittedArrowDirections: UIPopoverArrowDirection,
-                                     adaptiveSheetProperties: SheetProperties?,
-                                     isInitial: Bool) {
+                             presenter: UIViewController,
+                             sourceRectTransform: ((CGRect) -> CGRect)?,
+                             permittedArrowDirections: UIPopoverArrowDirection,
+                             adaptiveSheetProperties: SheetProperties?,
+                             isInitial: Bool) {
         setupModalPresentationStyle(viewController, style: .popover, isInitial: isInitial)
         if isInitial {
             viewController.popoverPresentationController?.sourceView = presenter.view
@@ -150,12 +150,12 @@ extension SheetPropertiesPresentationConfigurator {
         }
         setup(viewController.popoverPresentationController?.adaptiveSheetPresentationController, presenter: presenter, properties: adaptiveSheetProperties, isInitial: isInitial)
     }
-    
+
     static func setup(_ sheetPresentationController: UISheetPresentationController?, presenter: UIViewController, properties: SheetProperties?, isInitial: Bool) {
         guard let sheetPresentationController = sheetPresentationController,
               let properties = properties
         else { return }
-        
+
         if sheetPresentationController.prefersEdgeAttachedInCompactHeight != properties.prefersEdgeAttachedInCompactHeight {
             sheetPresentationController.prefersEdgeAttachedInCompactHeight = properties.prefersEdgeAttachedInCompactHeight
         }
@@ -171,7 +171,7 @@ extension SheetPropertiesPresentationConfigurator {
         if sheetPresentationController.preferredCornerRadius != properties.preferredCornerRadius {
             sheetPresentationController.preferredCornerRadius = properties.preferredCornerRadius
         }
-        
+
         let sorted = properties.detents.sorted()
         if !sheetPresentationController.detents.elementsEqual(sorted) {
             sheetPresentationController.detents = sorted
@@ -196,7 +196,7 @@ extension SheetPropertiesPresentationConfigurator {
         if sheetPresentationController.prefersScrollingExpandsWhenScrolledToEdge != properties.prefersScrollingExpandsWhenScrolledToEdge {
             sheetPresentationController.prefersScrollingExpandsWhenScrolledToEdge = properties.prefersScrollingExpandsWhenScrolledToEdge
         }
-        
+
         if isInitial {
             sheetPresentationController.sourceView = properties.shouldAdjustToSourceView ? presenter.view : nil
         }
