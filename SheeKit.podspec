@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'SheeKit'
-  s.version = '2.0.0'
+  s.version = '2.0.1'
   s.license = 'MIT License'
   s.summary = 'A bridge between SwiftUI and UIKit which enriches the modal presentations in SwiftUI with the features available in UIKit.'
   s.homepage = 'https://github.com/edudnyk/SheeKit'
