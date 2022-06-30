@@ -32,6 +32,13 @@ import UIKit
 /// The proxy with preferred parameters of the presented view controller that hosts the presented `View`.
 public struct UIViewControllerProxy {
     
+    /// Optionally override the interface style of the presented view controller.
+    ///
+    /// This property allows optionally overriding the interface style of the prsented view contoller if set
+    /// To change the interface sytle, you must set this property before presenting the `View`. The default value for this property is `nil, which results in inherting the interface style of the current application `.
+    /// Possible interface styles are .dark, .light. See the documenation for UIUserInterfaceStyle for more details.
+    public var overrideUserInterfaceStyle: UIUserInterfaceStyle? = nil
+    
     /// The transition style to use when presenting the view controller.
     ///
     /// This property determines how the `View` is animated onscreen when it is presented.

@@ -71,6 +71,10 @@ final class SheetHostingController<Item>: UIHostingController<AnyView> where Ite
             setNeedsUpdateOfPrefersPointerLocked()
         }
         
+        if let style = proxy.overrideUserInterfaceStyle {
+            overrideUserInterfaceStyle = style
+        }
+        
         overridePrefersHomeIndicatorAutoHidden = proxy.prefersHomeIndicatorAutoHidden
         
         if overridePreferredScreenEdgesDeferringSystemGestures != proxy.preferredScreenEdgesDeferringSystemGestures {
