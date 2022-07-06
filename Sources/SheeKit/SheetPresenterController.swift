@@ -65,7 +65,6 @@ final class SheetPresenterController: UIViewController {
             presenterProxy = parent
             willMove(toParent: nil)
             removeFromParent()
-            assert(parent!.presentedViewController == nil)
         } else if parent != nil {
             presenterProxy = self
         } else {
