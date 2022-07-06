@@ -65,6 +65,7 @@ final class SheetPresenterController: UIViewController {
             presenterProxy = parent
             willMove(toParent: nil)
             removeFromParent()
+            assert(parent!.presentedViewController == nil)
         } else if parent != nil {
             presenterProxy = self
         } else {
@@ -164,7 +165,15 @@ struct SheetPresenterControllerRepresentable<Item>: UIViewControllerRepresentabl
                     let sheetHost = sheetHostProvider(coordinator, presenter, item, dismissAction)
                     sheetHost.onDismiss = onDismiss
                     sheetHost.presentationController?.delegate = coordinator
-                    presenter.presenterProxy?.present(sheetHost, animated: true)
+                    guard let presenterProxy = presenter.presenterProxy else {
+                        // fatalError("no presenter")
+                        return
+                    }
+                    var controllerToPresentFrom: UIViewController = presenterProxy
+                    while let presented = controllerToPresentFrom.presentedViewController {
+                        controllerToPresentFrom = presented
+                    }
+                    controllerToPresentFrom.present(sheetHost, animated: true)
                 }
                 if let previousSheetHost = coordinator.sheetHost,
                    previousSheetHost.itemId == nil,
